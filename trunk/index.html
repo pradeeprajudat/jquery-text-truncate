@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">  
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <title>textTruncate - A JQuery Plugin for Truncating Styled Text</title>
+  <style type="text/css" media="Screen">
+    .testText p {white-space:nowrap;overflow:hidden;margin:0;visibility:hidden;}
+    .testText p.styled {font-family:impact;font-size:1.75em;font-style:italic;}
+    .testText p.tiny {font-family:tahoma;font-size:0.75em;font-weight:bold;}
+    .ruler {width:250px;height:1em;border-top:2px dashed #000;background-color:#ffa;}
+  </style>
+</head>
+<body>
+  <div class="testText">
+    <p class="unstyled">This is a bit of plain text that could be any length, but has to fit a given pixel width.</p>
+    <p class="styled">This is a bit of styled text that could be any length, but has to fit a given pixel width.</p>
+    <p class="tiny">This is a bit of tiny text that could be any length, but has to fit a given pixel width. (For example, this is a really long bit of text that has to fit on a single line.)</p>
+  </div>
+  <div class="ruler"></div>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.textTruncate.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var newWidth = 500; // the maximum goal width, in pixels
+      $('.ruler').text(newWidth + 'px').css('width',newWidth); // set the width and text of the ruler
+      $('p.unstyled','.testText').textTruncate(newWidth,"..."); // The element with text to be measured
+      $('p.styled','.testText').textTruncate(newWidth); // Default ellipses text
+      $('p.tiny','.testText').textTruncate(newWidth,"...and so on and so forth...");// Really long margin text
+    });
+  </script>
+</body>
+</html>
